@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# Ejecutar lint:fix
+echo "🚀 Pre-commit checks starting..."
+
+# Ejecutar linting con fix
+echo "🔧 Running linting..."
 pnpm run lint:fix
 
 # Verificar si hay cambios después del lint
