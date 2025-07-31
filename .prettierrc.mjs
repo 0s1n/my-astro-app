@@ -5,15 +5,15 @@ export default {
   tabWidth: 2,
   printWidth: 120,
   singleQuote: false,
-  trailingComma: 'es5',
+  trailingComma: "es5",
   bracketSpacing: true,
-  endOfLine: 'lf',
-  tailwindStylesheet: './src/styles/global.css',
-  plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
+  endOfLine: "lf",
+  tailwindStylesheet: "./src/styles/global.css",
+  plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
   overrides: [
     {
-      files: '*.astro',
-      options: { parser: 'astro' },
+      files: "*.astro",
+      options: { parser: "astro" },
     },
   ],
 };
