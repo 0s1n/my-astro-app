@@ -51,9 +51,9 @@ jobs:
             pnpm dlx commitlint --from=HEAD~1 --to=HEAD --verbose
           fi
 
-  # Job 2: Linting y Code Quality
+  # Job 2: Linting y Code Quality (solo verificación - Husky ya corrigió localmente)
   lint-and-format:
-    name: 🔍 Lint & Format
+    name: 🔍 Lint & Format Check
     runs-on: ubuntu-latest
     needs: validate-commits # Ejecutar después de validar commits
 
@@ -75,20 +75,11 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 🔍 Run ESLint
+      - name: 🔍 Run ESLint (check only)
         run: pnpm run lint
 
-      - name: 💅 Check Prettier formatting
-        run: |
-          # Verificar si hay diferencias de formato
-          if ! pnpm exec prettier --check . --ignore-path .prettierignore; then
-            echo "❌ Code formatting issues found. Run 'pnpm run format' locally to fix."
-            echo "Files that need formatting:"
-            pnpm exec prettier --check . --ignore-path .prettierignore || true
-            exit 1
-          else
-            echo "✅ Code is properly formatted"
-          fi
+      - name: 💅 Check Prettier formatting (check only)
+        run: pnpm run format:check
 
   # Job 3: Build y Tests
   build-and-test:

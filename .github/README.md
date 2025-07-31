@@ -37,22 +37,22 @@ Este workflow se ejecuta automáticamente en cada push y pull request para asegu
 
 ## 🔄 Flujo Completo
 
-```
-Local Development          →    GitHub Actions
-─────────────────                ──────────────
-1. Husky pre-commit              1. Validate commits
-   - lint:fix                    2. Lint & format check
-   - auto style commits          3. Build project
-                                 4. Type checking
-2. Husky commit-msg
-   - validate message            ✅ All checks pass
-
-3. Husky pre-push               🚀 Ready to merge/deploy
-   - lint check
+````
+Local Development (Husky)       →    GitHub Actions (Verification)
+─────────────────────                ──────────────────────────────
+1. Pre-commit                        1. Validate commits
+   - lint:fix (auto-fix)              2. Lint check (verify only)
+   - format (auto-format)             3. Format check (verify only)
+   - auto style commits               4. Build project
+                                      5. Type checking
+2. Commit-msg
+   - validate conventional            ✅ All checks should pass
+                                     (because Husky already fixed everything)
+3. Pre-push
+   - lint:fix & format               🚀 Ready to merge/deploy
    - build check
-```
-
-## ✅ Estados del Pipeline
+   - auto style commits
+```## ✅ Estados del Pipeline
 
 - **✅ All checks passed**: Todo está listo para merge
 - **❌ Commit validation failed**: Mensajes no siguen conventional commits
@@ -86,4 +86,4 @@ pnpm exec tsc --noEmit
 
 # Generar tipos CF
 pnpm run cf-typegen
-```
+````

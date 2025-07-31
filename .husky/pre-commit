@@ -6,9 +6,13 @@ echo "🚀 Pre-commit checks starting..."
 echo "🔧 Running linting..."
 pnpm run lint:fix
 
-# Verificar si hay cambios después del lint
+# Ejecutar formatting
+echo "💅 Running formatting..."
+pnpm run format
+
+# Verificar si hay cambios después del lint y format
 if [ -n "$(git diff --name-only)" ]; then
-  echo "🔧 Linting fixes applied. Adding changes and creating style commit..."
+  echo "🔧 Linting and formatting fixes applied. Adding changes and creating style commit..."
   
   # Obtener el mensaje del commit actual
   COMMIT_MSG=$(cat .git/COMMIT_EDITMSG 2>/dev/null || echo "code formatting")
@@ -16,7 +20,7 @@ if [ -n "$(git diff --name-only)" ]; then
   # Extraer solo la descripción del commit (sin el tipo)
   COMMIT_DESC=$(echo "$COMMIT_MSG" | sed 's/^[a-z]*[(:][^:]*[):]*[ ]*//')
   
-  # Agregar los cambios del linting
+  # Agregar los cambios del linting y formatting
   git add .
   
   # Crear commit de estilo automático
