@@ -1,0 +1,37 @@
+#!/bin/bash
+
+echo "🚀 Pre-push checks starting..."
+
+# Ejecutar linting con fix
+echo "🔧 Running linting..."
+pnpm run lint:fix
+
+# Verificar si hay cambios después del lint
+if [ -n "$(git diff --name-only)" ]; then
+  echo "⚠️  Linting fixes found. Adding changes and creating style commit..."
+  
+  # Obtener el último commit message
+  LAST_COMMIT_MSG=$(git log -1 --pretty=%s)
+  
+  # Extraer la descripción del último commit (sin el tipo)
+  COMMIT_DESC=$(echo "$LAST_COMMIT_MSG" | sed 's/^[a-z]*[(:][^:]*[):]*[ ]*//')
+  
+  # Agregar los cambios del linting
+  git add .
+  
+  # Crear commit de estilo automático
+  git commit -m "style: $COMMIT_DESC"
+  
+  echo "✅ Style commit created automatically"
+fi
+
+# Ejecutar build para verificar que todo compila
+echo "🏗️  Building project..."
+pnpm run build
+
+if [ $? -eq 0 ]; then
+  echo "✅ Pre-push checks passed!"
+else
+  echo "❌ Build failed. Push aborted."
+  exit 1
+fi
