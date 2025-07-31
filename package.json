@@ -11,6 +11,8 @@
 		"cf-typegen": "wrangler types",
 		"lint": "eslint . --ext .js,.ts,.astro",
 		"lint:fix": "eslint . --ext .js,.ts,.astro --fix",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
 		"commitlint": "commitlint --edit",
 		"prepare": "husky"
 	},
