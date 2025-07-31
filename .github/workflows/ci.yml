@@ -81,10 +81,10 @@ jobs:
       - name: 💅 Check Prettier formatting
         run: |
           # Verificar si hay diferencias de formato
-          if ! pnpm exec prettier --check . --ignore-path .gitignore; then
+          if ! pnpm exec prettier --check . --ignore-path .prettierignore; then
             echo "❌ Code formatting issues found. Run 'pnpm run format' locally to fix."
             echo "Files that need formatting:"
-            pnpm exec prettier --check . --ignore-path .gitignore || true
+            pnpm exec prettier --check . --ignore-path .prettierignore || true
             exit 1
           else
             echo "✅ Code is properly formatted"
