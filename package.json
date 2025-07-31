@@ -12,7 +12,7 @@
 		"lint": "eslint . --ext .js,.ts,.astro",
 		"lint:fix": "eslint . --ext .js,.ts,.astro --fix",
 		"format": "prettier --write .",
-		"format:check": "prettier --check .",
+		"format:check": "prettier --check . --ignore-path .prettierignore",
 		"commitlint": "commitlint --edit",
 		"prepare": "husky"
 	},

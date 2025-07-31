@@ -1,12 +1,39 @@
-# # Ignore everything
-# /*
+# Build output
+dist/
+.astro/
 
-# # Except these files & folders
-# !/.github
-# !/src
+# Dependencies
+node_modules/
 
-# Or ignore the listed files:
-./node_modules
-./public
+# Logs
+*.log
+
+# Environment files
+.env*
+
+# Generated files
+worker-configuration.d.ts
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Cache directories
+.cache/
+.parcel-cache/
+
+# OS generated files
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Wrangler files
+.wrangler/
+
+# Public assets (opcional)
+public/
 ./vscode
 pnpm-lock.yaml
