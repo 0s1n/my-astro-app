@@ -1,0 +1,12 @@
+{
+	"files.associations": {
+		"wrangler.json": "jsonc"
+	},
+	"eslint.valite": [
+		"javascript",
+		"javascriptreact",
+		"astro", // Enable .astro
+		"typescript", // Enable .ts
+		"typescriptreact" // Enable .tsx
+	],
+}

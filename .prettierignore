@@ -1,0 +1,12 @@
+# # Ignore everything
+# /*
+
+# # Except these files & folders
+# !/.github
+# !/src
+
+# Or ignore the listed files:
+./node_modules
+./public
+./vscode
+pnpm-lock.yaml
