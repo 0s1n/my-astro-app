@@ -3,7 +3,7 @@
 export default {
   semi: true,
   tabWidth: 2,
-  printWidth: 120,
+  printWidth: 80,
   singleQuote: false,
   trailingComma: "es5",
   bracketSpacing: true,

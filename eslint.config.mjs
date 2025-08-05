@@ -28,6 +28,11 @@ export default [
     },
   },
   {
-    ignores: ["dist/**", ".astro/**", "node_modules/**", "worker-configuration.d.ts"],
+    ignores: [
+      "dist/**",
+      ".astro/**",
+      "node_modules/**",
+      "worker-configuration.d.ts",
+    ],
   },
 ];
