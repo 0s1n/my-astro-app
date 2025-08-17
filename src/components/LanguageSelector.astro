@@ -1,0 +1,50 @@
+---
+import { supportedLanguages } from "../i18n/utils";
+
+const { currentLang, label } = Astro.props;
+---
+
+<div class="language-selector">
+  <label for="lang-select">{label}</label>
+  <select id="lang-select" name="language" aria-label={label}>
+    {
+      supportedLanguages.map((language) => (
+        <option value={language} selected={language === currentLang}>
+          {language === "es" ? "Español" : "English"}
+        </option>
+      ))
+    }
+  </select>
+</div>
+
+<script>
+  // Manejo del cambio de idioma con mejor UX
+  const languageSelect = document.getElementById(
+    "lang-select"
+  ) as HTMLSelectElement | null;
+
+  if (languageSelect) {
+    languageSelect.addEventListener("change", (event) => {
+      const target = event.target as HTMLSelectElement;
+      const selectedLang = target.value;
+
+      // Mostrar indicador de carga
+      target.disabled = true;
+      target.style.opacity = "0.7";
+
+      // Obtener la ruta actual sin el prefijo de idioma
+      const currentPath = window.location.pathname;
+      const pathWithoutLang =
+        currentPath.replace(/^\/[a-z]{2}(?=\/|$)/, "") || "/";
+
+      // Redirigir a la nueva URL con el idioma seleccionado
+      const newPath = `/${selectedLang}${pathWithoutLang === "/" ? "" : pathWithoutLang}`;
+
+      // Agregar parámetros de consulta si existen
+      const search = window.location.search;
+      const hash = window.location.hash;
+
+      window.location.href = newPath + search + hash;
+    });
+  }
+</script>

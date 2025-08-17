@@ -12,4 +12,12 @@ export default defineConfig({
 
     imageService: "cloudflare",
   }),
+  i18n: {
+    defaultLocale: "es",
+    locales: ["es", "en"],
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: true,
+    },
+  },
 });
