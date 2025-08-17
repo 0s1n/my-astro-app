@@ -4,8 +4,8 @@ echo "🚀 Pre-push checks starting..."
 
 # Ejecutar linting con fix y formatting
 echo "🔧 Running linting and formatting..."
-pnpm run lint:fix
-pnpm run format
+yarn run lint:fix
+yarn run format
 
 # Verificar si hay cambios después del lint y format
 if [ -n "$(git diff --name-only)" ]; then
@@ -28,7 +28,7 @@ fi
 
 # Ejecutar build para verificar que todo compila
 echo "🏗️  Building project..."
-pnpm run build
+yarn run build
 
 if [ $? -eq 0 ]; then
   echo "✅ Pre-push checks passed!"

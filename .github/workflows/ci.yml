@@ -27,28 +27,23 @@ jobs:
           # Necesario para commitlint: obtener historial completo
           fetch-depth: 0
 
-      - name: 📦 Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
-
       - name: ⚡ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "pnpm"
+          cache: "yarn"
 
       - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: 📝 Validate commit messages
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             # Para PRs: validar commits desde la base branch
-            pnpm dlx commitlint --from=${{ github.event.pull_request.base.sha }} --to=${{ github.event.pull_request.head.sha }} --verbose
+            yarn dlx commitlint --from=${{ github.event.pull_request.base.sha }} --to=${{ github.event.pull_request.head.sha }} --verbose
           else
             # Para push: validar el último commit
-            pnpm dlx commitlint --from=HEAD~1 --to=HEAD --verbose
+            yarn dlx commitlint --from=HEAD~1 --to=HEAD --verbose
           fi
 
   # Job 2: Linting y Code Quality (solo verificación - Husky ya corrigió localmente)
@@ -61,25 +56,20 @@ jobs:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
 
-      - name: 📦 Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
-
       - name: ⚡ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "pnpm"
+          cache: "yarn"
 
       - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: 🔍 Run ESLint (check only)
-        run: pnpm run lint
+        run: yarn run lint
 
       - name: 💅 Check Prettier formatting (check only)
-        run: pnpm run format:check
+        run: yarn run format:check
 
   # Job 3: Build y Tests
   build-and-test:
@@ -91,28 +81,23 @@ jobs:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
 
-      - name: 📦 Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
-
       - name: ⚡ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "pnpm"
+          cache: "yarn"
 
       - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: 🏗️ Build project
-        run: pnpm run build
+        run: yarn run build
 
       - name: 🧪 Run tests (when available)
         run: |
-          if pnpm run test --dry-run 2>/dev/null; then
+          if yarn run test --dry-run 2>/dev/null; then
             echo "🧪 Running tests..."
-            pnpm run test
+            yarn run test
           else
             echo "⚠️ No tests found, skipping test step"
           fi
@@ -134,22 +119,17 @@ jobs:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
 
-      - name: 📦 Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
-
       - name: ⚡ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "pnpm"
+          cache: "yarn"
 
       - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: 🌐 Generate Cloudflare Worker types
-        run: pnpm run cf-typegen
+        run: yarn run cf-typegen
         continue-on-error: true # No fallar si no hay configuración de CF
 
       - name: 🔍 TypeScript type check
@@ -157,7 +137,7 @@ jobs:
           # Verificar si hay archivos TypeScript para chequear
           if find . -name "*.ts" -o -name "*.tsx" -not -path "./node_modules/*" -not -path "./dist/*" | head -1 | grep -q .; then
             echo "🔍 Running TypeScript type check..."
-            pnpm exec tsc --noEmit
+            yarn exec tsc --noEmit
           else
             echo "⚠️ No TypeScript files found, skipping type check"
           fi
