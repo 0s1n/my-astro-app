@@ -34,7 +34,7 @@ jobs:
           cache: "yarn"
 
       - name: 📦 Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --inmutable
 
       - name: 📝 Validate commit messages
         run: |
@@ -63,7 +63,7 @@ jobs:
           cache: "yarn"
 
       - name: 📦 Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --inmutable
 
       - name: 🔍 Run ESLint (check only)
         run: yarn run lint
@@ -88,7 +88,7 @@ jobs:
           cache: "yarn"
 
       - name: 📦 Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --inmutable
 
       - name: 🏗️ Build project
         run: yarn run build
@@ -126,7 +126,7 @@ jobs:
           cache: "yarn"
 
       - name: 📦 Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --inmutable
 
       - name: 🌐 Generate Cloudflare Worker types
         run: yarn run cf-typegen
