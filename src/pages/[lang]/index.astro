@@ -1,0 +1,119 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "../../layouts/Layout.astro";
+import FeatureCard from "../../components/FeatureCard.astro";
+import {
+  useTranslations,
+  generateStaticPaths,
+  type Lang,
+} from "../../i18n/utils";
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return generateStaticPaths();
+};
+
+const { lang } = Astro.params as { lang: Lang };
+const t = useTranslations(lang);
+---
+
+<Layout
+  lang={lang}
+  title={t("site.title")}
+  description={t("site.description")}
+  keywords={t("meta.keywords")}
+>
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">{t("site.title")}</h1>
+      <p class="hero-description">{t("site.description")}</p>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="features-grid">
+      <FeatureCard
+        title={t("home.feature1.title")}
+        description={t("home.feature1.description")}
+        icon="🚀"
+      />
+
+      <FeatureCard
+        title={t("home.feature2.title")}
+        description={t("home.feature2.description")}
+        icon="🌍"
+      />
+
+      <FeatureCard
+        title={t("home.feature3.title")}
+        description={t("home.feature3.description")}
+        icon="⚡"
+      />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: -2rem -1rem 3rem -1rem;
+    color: white;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-description {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    margin-bottom: 0;
+    opacity: 0.95;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .features {
+    margin-bottom: 4rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 3rem 0;
+      margin: -1.5rem -1rem 2rem -1rem;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 2rem 0;
+    }
+
+    .hero-content {
+      padding: 0 0.5rem;
+    }
+  }
+</style>

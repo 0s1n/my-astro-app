@@ -1,17 +1,83 @@
 ---
 import "../styles/global.css";
+
+import { useTranslations, type Lang } from "../i18n/utils";
+import LanguageSelector from "../components/LanguageSelector.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  lang: Lang;
+}
+
+const { title = "", description = "", keywords = "", lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Usar las traducciones como fallback si no se proporcionan explícitamente
+const pageTitle = title || t("meta.title");
+const pageDescription = description || t("meta.description");
+const pageKeywords = keywords || t("meta.keywords");
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang} dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+
+    <!-- SEO Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content={pageKeywords} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
+
+    <!-- Preconnect para mejores performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
-    <slot />
+    <header class="site-header">
+      <nav class="nav-container">
+        <div class="nav-brand">
+          <a href={`/${lang}/`} class="brand-link">
+            <span class="brand-text">{t("site.title")}</span>
+          </a>
+        </div>
+
+        <div class="nav-actions">
+          <LanguageSelector currentLang={lang} label={t("language.label")} />
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p>
+          &copy; 2024 {t("site.title")}. {
+            lang === "es"
+              ? "Todos los derechos reservados."
+              : "All rights reserved."
+          }
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
