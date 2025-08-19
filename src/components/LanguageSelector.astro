@@ -1,6 +1,11 @@
 ---
 import { supportedLanguages } from "../i18n/utils";
 
+interface Props {
+  currentLang: string;
+  label: string;
+}
+
 const { currentLang, label } = Astro.props;
 ---
 

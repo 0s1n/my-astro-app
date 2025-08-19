@@ -15,7 +15,7 @@ export type UI = typeof ui;
  * Extrae el idioma de la URL usando el enrutamiento de Astro
  */
 export function getLangFromUrl(url: URL): Lang {
-  const langCandidate = url.pathname.split("/")[1]?.toLocaleLowerCase();
+  const langCandidate = url.pathname.split("/")[1]?.toLowerCase();
   return isSupportedLanguage(langCandidate) ? langCandidate : defaultLang;
 }
 

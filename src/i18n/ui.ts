@@ -3,6 +3,7 @@ export const ui = {
     "site.title": "Mi Aplicación Astro",
     "site.description":
       "Una aplicación web moderna construida con Astro y TypeScript",
+    "site.copyright": "Todos los derechos reservados.",
     "nav.home": "Inicio",
     "nav.about": "Acerca de",
     "nav.contact": "Contacto",
@@ -26,6 +27,7 @@ export const ui = {
     "site.title": "My Astro App",
     "site.description":
       "A modern web application built with Astro and TypeScript",
+    "site.copyright": "All rights reserved.",
     "nav.home": "Home",
     "nav.about": "About",
     "nav.contact": "Contact",
