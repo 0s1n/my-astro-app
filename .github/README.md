@@ -67,23 +67,23 @@ Para reproducir las verificaciones localmente:
 
 ```bash
 # Validar formato
-pnpm run format:check
+yarn run format:check
 
 # Arreglar formato
-pnpm run format
+yarn run format
 
 # Linting
-pnpm run lint
+yarn run lint
 
 # Arreglar linting
-pnpm run lint:fix
+yarn run lint:fix
 
 # Build
-pnpm run build
+yarn run build
 
 # Type check
-pnpm exec tsc --noEmit
+yarn exec tsc --noEmit
 
 # Generar tipos CF
-pnpm run cf-typegen
+yarn run cf-typegen
 ````

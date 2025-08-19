@@ -35,5 +35,3 @@ yarn.lock
 
 # Public assets (opcional)
 public/
-./vscode
-pnpm-lock.yaml

@@ -14,14 +14,14 @@
 
 ### Pre-commit:
 
-1. Ejecuta `pnpm run lint:fix` automáticamente
+1. Ejecuta `yarn run lint:fix` automáticamente
 2. Si hay cambios de linting, crea un commit automático con formato: `style: <descripción del commit original>`
 3. Valida el mensaje de commit con conventional commits
 
 ### Pre-push:
 
 1. Ejecuta linting final y crea commit de estilo si es necesario
-2. Ejecuta `pnpm run build` para verificar que todo compila
+2. Ejecuta `yarn run build` para verificar que todo compila
 3. Solo permite el push si todo está correcto
 
 ## Ejemplo de flujo:

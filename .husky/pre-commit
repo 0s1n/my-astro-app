@@ -4,11 +4,11 @@ echo "🚀 Pre-commit checks starting..."
 
 # Ejecutar linting con fix
 echo "🔧 Running linting..."
-pnpm run lint:fix
+yarn run lint:fix
 
 # Ejecutar formatting
 echo "💅 Running formatting..."
-pnpm run format
+yarn run format
 
 # Verificar si hay cambios después del lint y format
 if [ -n "$(git diff --name-only)" ]; then
