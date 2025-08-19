@@ -37,5 +37,8 @@
     "typescript": "^5.9.0",
     "typescript-eslint": "^8.38.0",
     "wrangler": "^4.25.0"
+  },
+  "resolutions": {
+    "tmp": "^0.2.4"
   }
 }
