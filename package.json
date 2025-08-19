@@ -21,8 +21,10 @@
     "astro": "^5.12.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.4",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/prompt-cli": "^19.8.1",
     "@eslint/js": "^9.32.0",
     "@types/node": "^24.0.15",
     "@typescript-eslint/parser": "^8.38.0",
@@ -32,7 +34,11 @@
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.14",
+    "typescript": "^5.9.0",
     "typescript-eslint": "^8.38.0",
     "wrangler": "^4.25.0"
+  },
+  "resolutions": {
+    "tmp": "^0.2.4"
   }
 }
